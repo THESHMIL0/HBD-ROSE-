@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Rose</title>
-    <link href="https://fonts.googleapis.com/css2?family=Courier+New&family=Bangers&display=swap" rel="stylesheet">
+    <title>Urgent Message</title>
     <style>
         /* --- STYLING --- */
         body {
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0; /* Boring grey start */
-            font-family: 'Courier New', monospace;
+            background-color: #333; /* Dark mode start */
+            font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -19,133 +18,143 @@
             height: 100vh;
             overflow: hidden;
             text-align: center;
-            transition: background-color 0.2s;
+            color: white;
+            transition: background-color 0.1s;
         }
 
         .container {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            background: #444;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
             max-width: 90%;
             width: 320px;
             position: relative;
             z-index: 10;
-            border: 2px solid #333;
+            border: 1px solid #666;
         }
 
-        /* PHASE 1: Boring/Formal */
+        /* PHASE 1: Serious */
         .serious-mode h1 {
-            font-size: 1.5rem;
-            color: #333;
-            margin-bottom: 20px;
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 10px;
             text-transform: uppercase;
-            border-bottom: 2px solid #333;
-            display: inline-block;
+        }
+
+        .serious-mode p {
+            font-size: 0.9rem;
+            color: #ccc;
         }
 
         /* PHASE 2: Chaos */
         .funny-mode {
             display: none;
+            color: black;
+            font-family: 'Comic Sans MS', 'Comic Sans', cursive; /* The most annoying font */
         }
 
         .shake-text {
-            font-family: 'Bangers', cursive;
-            color: #ff0000;
-            font-size: 3.5rem;
-            letter-spacing: 2px;
-            animation: shake 0.5s infinite;
-            text-shadow: 4px 4px 0px #000;
+            color: red;
+            font-size: 3rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            animation: shake 0.1s infinite; /* Faster shake */
+            text-shadow: 2px 2px 0px yellow;
             line-height: 1;
             margin-bottom: 10px;
         }
 
-        .roast-msg {
-            font-family: 'Courier New', monospace;
-            font-weight: bold;
+        .roast-box {
+            background: #fff;
+            border: 3px solid black;
+            padding: 10px;
+            margin: 10px 0;
+            transform: rotate(-1deg);
+            box-shadow: 5px 5px 0px black;
+        }
+
+        .roast-line {
             font-size: 1.1rem;
-            color: #000;
-            margin: 15px 0;
-            background: yellow;
-            padding: 5px;
-            display: inline-block;
-            transform: rotate(-2deg);
+            margin: 10px 0;
+            font-weight: bold;
         }
 
         .meme-img {
             width: 100%;
-            border: 4px solid #000;
-            box-shadow: 8px 8px 0px #000;
+            border: 3px solid black;
         }
 
         /* BUTTONS */
         .btn {
-            background: #333;
+            background: #007bff;
             color: white;
             border: none;
-            padding: 15px 30px;
+            padding: 10px 20px;
             font-size: 1rem;
-            font-weight: bold;
             cursor: pointer;
             margin-top: 15px;
-            font-family: 'Courier New', monospace;
-            border: 2px solid transparent;
+            border-radius: 3px;
         }
 
         .btn-runaway {
-            background: #ff4757;
-            position: relative; /* Needed for movement */
-            transition: all 0.1s;
+            background: red;
+            color: white;
+            font-weight: bold;
+            font-family: 'Comic Sans MS', cursive;
+            position: relative; 
+            border: 2px solid yellow;
+            box-shadow: 3px 3px 0px black;
         }
 
         .footer {
-            margin-top: 25px;
-            font-size: 0.7rem;
-            color: #555;
+            margin-top: 20px;
+            font-size: 0.8rem;
             font-weight: bold;
+            background: black;
+            color: white;
+            padding: 5px;
+            display: inline-block;
         }
 
         /* ANIMATIONS */
         @keyframes shake {
-            0% { transform: translate(1px, 1px) rotate(0deg); }
-            10% { transform: translate(-1px, -2px) rotate(-1deg); }
-            20% { transform: translate(-3px, 0px) rotate(1deg); }
-            30% { transform: translate(3px, 2px) rotate(0deg); }
-            40% { transform: translate(1px, -1px) rotate(1deg); }
-            50% { transform: translate(-1px, 2px) rotate(-1deg); }
-            60% { transform: translate(-3px, 1px) rotate(0deg); }
-            70% { transform: translate(3px, 1px) rotate(-1deg); }
-            80% { transform: translate(-1px, -1px) rotate(1deg); }
-            90% { transform: translate(1px, 2px) rotate(0deg); }
-            100% { transform: translate(1px, -2px) rotate(-1deg); }
+            0% { transform: translate(2px, 2px); }
+            25% { transform: translate(-2px, -2px); }
+            50% { transform: translate(2px, -2px); }
+            75% { transform: translate(-2px, 2px); }
+            100% { transform: translate(2px, 2px); }
         }
 
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <div class="container" id="main-box">
         <div id="phase1" class="serious-mode">
-            <h1>Important Message</h1>
-            <p>Subject: Regarding your birthday.</p>
-            <p>Please click below to acknowledge receipt.</p>
-            <button class="btn" onclick="triggerChaos()">ACKNOWLEDGE</button>
+            <h1>⚠ Security Alert</h1>
+            <p>Unusual activity detected on your birthday.</p>
+            <p>Click below to verify identity.</p>
+            <button class="btn" onclick="triggerChaos()">VERIFY NOW</button>
         </div>
 
         <div id="phase2" class="funny-mode">
-            <h1 class="shake-text">HAPPY BIRTHDAY<br>IDIOT!</h1>
+            <h1 class="shake-text">HAPPY BIRTHDAY<br>IDIOT</h1>
             
             <img src="https://media.giphy.com/media/ADSJHOoIvyjKM/giphy.gif" alt="Funny Cat" class="meme-img">
             
-            <p class="roast-msg">
-                Another year older,<br>but not any wiser.
-            </p>
+            <div class="roast-box">
+                <p class="roast-line">🎉 Congrats on aging like milk!</p>
+                <p class="roast-line">🧠 Searching for brain cells...<br> <span style="color:red">ERROR 404</span></p>
+                <p class="roast-line">🎁 I was gonna get you a gift, but my presence is enough.</p>
+            </div>
 
-            <p style="font-size:0.8rem; margin-top:10px;">Music too loud? Click below to stop it.</p>
+            <p style="font-size:0.9rem; font-weight:bold;">Click button to stop the annoying music:</p>
             <button class="btn btn-runaway" id="runaway-btn" onmouseover="moveButton()" onclick="moveButton()">STOP MUSIC 🔇</button>
 
+            <br>
             <div class="footer">
-                Made by <strong>Theshmil & Afna</strong>
+                Made with 1% effort by Theshmil
             </div>
         </div>
     </div>
@@ -156,20 +165,18 @@
         function triggerChaos() {
             // 1. Hide serious
             document.getElementById('phase1').style.display = 'none';
+            document.getElementById('main-box').style.background = '#00ff00'; // Green background for box
             
             // 2. Show funny
             document.getElementById('phase2').style.display = 'block';
 
-            // 3. Chaos Background
-            document.body.style.backgroundColor = "#00ff00"; // Bright annoying green
-            
-            // 4. Flash effect
+            // 3. Chaos Background Flashing
             setInterval(function() {
-                const colors = ['#00ff00', '#ff00ff', '#00ffff', '#ffff00'];
+                const colors = ['red', 'blue', 'yellow', 'purple', 'orange'];
                 document.body.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
             }, 200);
 
-            // 5. Play Music
+            // 4. Play Music
             var audio = document.getElementById("bday-audio");
             audio.play();
         }
@@ -178,14 +185,19 @@
         function moveButton() {
             var btn = document.getElementById('runaway-btn');
             
-            // Get random positions limited to the container mostly
-            var x = Math.random() * (window.innerWidth - btn.offsetWidth);
-            var y = Math.random() * (window.innerHeight - btn.offsetHeight);
+            // Generate random positions
+            var x = Math.random() * (window.innerWidth - 100);
+            var y = Math.random() * (window.innerHeight - 50);
             
-            // Apply new fixed position to make it jump around screen
+            // Apply new fixed position to make it jump
             btn.style.position = 'fixed';
             btn.style.left = x + 'px';
             btn.style.top = y + 'px';
+            
+            // Annoying Alert (Only happens 10% of the time so it doesn't freeze phone)
+            if(Math.random() < 0.2) {
+                alert("Too slow! 😹");
+            }
         }
     </script>
 </body>
