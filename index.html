@@ -156,7 +156,7 @@
         </div>
 
         <p style="font-size:0.8rem; margin-bottom:5px;">Click below to claim your gift:</p>
-        <button class="btn btn-fake" id="runaway-btn" onclick="moveButton()" onmouseover="moveButton()">🎁 CLAIM GIFT ($100)</button>
+        <button class="btn btn-fake" id="runaway-btn" onclick="moveButton()" onmouseover="moveButton()">🎁 CLAIM GIFT (₹100)</button>
 
         <div class="footer">
             Made by <span>Theshmil</span>
@@ -180,12 +180,11 @@
         // The Runaway Button Logic
         function moveButton() {
             var btn = document.getElementById('runaway-btn');
-            var container = document.getElementById('roast');
             
             // Get random X and Y positions
             // We limit it to the screen width/height so it doesn't disappear completely
-            var x = Math.random() * (window.innerWidth - btn.offsetWidth - 40);
-            var y = Math.random() * (window.innerHeight - btn.offsetHeight - 40);
+            var x = Math.random() * (window.innerWidth - btn.offsetWidth - 20);
+            var y = Math.random() * (window.innerHeight - btn.offsetHeight - 20);
             
             btn.style.position = 'fixed';
             btn.style.left = x + 'px';
