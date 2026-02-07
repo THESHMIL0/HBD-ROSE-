@@ -3,201 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Urgent Message</title>
+    <title>Rose's Birthday</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Fredoka+One&display=swap" rel="stylesheet">
     <style>
-        /* --- STYLING --- */
+        /* --- MODERN STYLING --- */
         body {
             margin: 0;
             padding: 0;
-            background-color: #333; /* Dark mode start */
-            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+            height: 100vh;
+            font-family: 'Poppins', sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
             overflow: hidden;
-            text-align: center;
-            color: white;
-            transition: background-color 0.1s;
+            color: #333;
         }
 
         .container {
-            background: #444;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            max-width: 90%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 30px;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            max-width: 85%;
             width: 320px;
+            text-align: center;
             position: relative;
-            z-index: 10;
-            border: 1px solid #666;
+            transition: transform 0.3s ease;
         }
 
-        /* PHASE 1: Serious */
-        .serious-mode h1 {
-            font-size: 1.2rem;
-            color: #fff;
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+        /* STAGE 1: The Intro */
+        #intro h1 {
+            color: #6c5ce7;
+            font-size: 1.8rem;
             margin-bottom: 10px;
-            text-transform: uppercase;
         }
 
-        .serious-mode p {
+        /* STAGE 2: The Roast */
+        #roast {
+            display: none; /* Hidden at start */
+            animation: fadeIn 1s ease;
+        }
+
+        h1.title {
+            font-family: 'Fredoka One', cursive;
+            color: #ff6b6b;
+            font-size: 2.2rem;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .subtitle {
             font-size: 0.9rem;
-            color: #ccc;
-        }
-
-        /* PHASE 2: Chaos */
-        .funny-mode {
-            display: none;
-            color: black;
-            font-family: 'Comic Sans MS', 'Comic Sans', cursive; /* The most annoying font */
-        }
-
-        .shake-text {
-            color: red;
-            font-size: 3rem;
-            font-weight: bold;
+            color: #888;
+            margin-bottom: 20px;
+            font-weight: 600;
             text-transform: uppercase;
-            animation: shake 0.1s infinite; /* Faster shake */
-            text-shadow: 2px 2px 0px yellow;
-            line-height: 1;
-            margin-bottom: 10px;
+            letter-spacing: 1px;
         }
 
-        .roast-box {
-            background: #fff;
-            border: 3px solid black;
-            padding: 10px;
-            margin: 10px 0;
-            transform: rotate(-1deg);
-            box-shadow: 5px 5px 0px black;
+        .meme-box {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            border: 5px solid #fff;
         }
 
-        .roast-line {
-            font-size: 1.1rem;
-            margin: 10px 0;
-            font-weight: bold;
-        }
-
-        .meme-img {
+        .meme-box img {
             width: 100%;
-            border: 3px solid black;
+            display: block;
+        }
+
+        .roast-text {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 25px;
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 10px;
         }
 
         /* BUTTONS */
         .btn {
-            background: #007bff;
+            background: linear-gradient(45deg, #6c5ce7, #a29bfe);
             color: white;
             border: none;
-            padding: 10px 20px;
-            font-size: 1rem;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
             cursor: pointer;
-            margin-top: 15px;
-            border-radius: 3px;
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+            transition: transform 0.2s;
+            width: 100%;
         }
 
-        .btn-runaway {
-            background: red;
-            color: white;
-            font-weight: bold;
-            font-family: 'Comic Sans MS', cursive;
-            position: relative; 
-            border: 2px solid yellow;
-            box-shadow: 3px 3px 0px black;
+        .btn:active { transform: scale(0.95); }
+
+        /* The Prank Button */
+        .btn-fake {
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            box-shadow: 0 5px 15px rgba(255, 154, 158, 0.4);
+            margin-top: 10px;
         }
 
         .footer {
-            margin-top: 20px;
+            margin-top: 30px;
             font-size: 0.8rem;
-            font-weight: bold;
-            background: black;
-            color: white;
-            padding: 5px;
-            display: inline-block;
+            color: #aaa;
+            font-weight: 600;
         }
 
-        /* ANIMATIONS */
-        @keyframes shake {
-            0% { transform: translate(2px, 2px); }
-            25% { transform: translate(-2px, -2px); }
-            50% { transform: translate(2px, -2px); }
-            75% { transform: translate(-2px, 2px); }
-            100% { transform: translate(2px, 2px); }
+        .footer span {
+            color: #6c5ce7;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
 
     </style>
 </head>
 <body>
 
-    <div class="container" id="main-box">
-        <div id="phase1" class="serious-mode">
-            <h1>⚠ Security Alert</h1>
-            <p>Unusual activity detected on your birthday.</p>
-            <p>Click below to verify identity.</p>
-            <button class="btn" onclick="triggerChaos()">VERIFY NOW</button>
+    <div class="container" id="intro">
+        <h1>Hey Rose! 👋</h1>
+        <p>I made a website just for you.</p>
+        <p style="font-size:0.9rem; color:#888;">(Don't get too excited)</p>
+        <button class="btn" onclick="startShow()">Open It 🔓</button>
+    </div>
+
+    <div class="container" id="roast">
+        <div class="subtitle">Official Birthday Wish</div>
+        <h1 class="title">HAPPY BIRTHDAY<br>IDIOT!</h1>
+
+        <div class="meme-box">
+            <img src="https://media.giphy.com/media/ADSJHOoIvyjKM/giphy.gif" alt="Funny Cat">
         </div>
 
-        <div id="phase2" class="funny-mode">
-            <h1 class="shake-text">HAPPY BIRTHDAY<br>IDIOT</h1>
-            
-            <img src="https://media.giphy.com/media/ADSJHOoIvyjKM/giphy.gif" alt="Funny Cat" class="meme-img">
-            
-            <div class="roast-box">
-                <p class="roast-line">🎉 Congrats on aging like milk!</p>
-                <p class="roast-line">🧠 Searching for brain cells...<br> <span style="color:red">ERROR 404</span></p>
-                <p class="roast-line">🎁 I was gonna get you a gift, but my presence is enough.</p>
-            </div>
+        <div class="roast-text">
+            Congratulations on surviving another year! <br>
+            <strong>Achievement Unlocked:</strong><br>
+            Still acting like a child. 🍼
+        </div>
 
-            <p style="font-size:0.9rem; font-weight:bold;">Click button to stop the annoying music:</p>
-            <button class="btn btn-runaway" id="runaway-btn" onmouseover="moveButton()" onclick="moveButton()">STOP MUSIC 🔇</button>
+        <p style="font-size:0.8rem; margin-bottom:5px;">Click below to claim your gift:</p>
+        <button class="btn btn-fake" id="runaway-btn" onclick="moveButton()" onmouseover="moveButton()">🎁 CLAIM GIFT ($100)</button>
 
-            <br>
-            <div class="footer">
-                Made with 1% effort by Theshmil
-            </div>
+        <div class="footer">
+            Made by <span>Theshmil</span>
         </div>
     </div>
 
-    <audio id="bday-audio" src="https://www.soundhelix.com/examples/mp3/Soundhelix-Song-1.mp3" loop></audio>
+    <audio id="bg-music" src="https://www.soundhelix.com/examples/mp3/Soundhelix-Song-1.mp3" loop></audio>
 
     <script>
-        function triggerChaos() {
-            // 1. Hide serious
-            document.getElementById('phase1').style.display = 'none';
-            document.getElementById('main-box').style.background = '#00ff00'; // Green background for box
-            
-            // 2. Show funny
-            document.getElementById('phase2').style.display = 'block';
-
-            // 3. Chaos Background Flashing
-            setInterval(function() {
-                const colors = ['red', 'blue', 'yellow', 'purple', 'orange'];
-                document.body.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-            }, 200);
-
-            // 4. Play Music
-            var audio = document.getElementById("bday-audio");
-            audio.play();
+        function startShow() {
+            // Hide Intro
+            document.getElementById('intro').style.display = 'none';
+            // Show Roast
+            document.getElementById('roast').style.display = 'block';
+            // Play Music
+            document.getElementById('bg-music').play();
+            // Launch Confetti
+            createConfetti();
         }
 
-        // THE RUNAWAY BUTTON LOGIC
+        // The Runaway Button Logic
         function moveButton() {
             var btn = document.getElementById('runaway-btn');
+            var container = document.getElementById('roast');
             
-            // Generate random positions
-            var x = Math.random() * (window.innerWidth - 100);
-            var y = Math.random() * (window.innerHeight - 50);
+            // Get random X and Y positions
+            // We limit it to the screen width/height so it doesn't disappear completely
+            var x = Math.random() * (window.innerWidth - btn.offsetWidth - 40);
+            var y = Math.random() * (window.innerHeight - btn.offsetHeight - 40);
             
-            // Apply new fixed position to make it jump
             btn.style.position = 'fixed';
             btn.style.left = x + 'px';
             btn.style.top = y + 'px';
-            
-            // Annoying Alert (Only happens 10% of the time so it doesn't freeze phone)
-            if(Math.random() < 0.2) {
-                alert("Too slow! 😹");
+            btn.style.zIndex = '100'; // Make sure it stays on top
+        }
+
+        // Clean Confetti Effect
+        function createConfetti() {
+            const colors = ['#ff6b6b', '#6c5ce7', '#fdcb6e', '#00b894'];
+            for (let i = 0; i < 50; i++) {
+                const conf = document.createElement('div');
+                conf.style.position = 'fixed';
+                conf.style.left = Math.random() * 100 + 'vw';
+                conf.style.top = '-10vh';
+                conf.style.width = '10px';
+                conf.style.height = '10px';
+                conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                conf.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+                document.body.appendChild(conf);
             }
+            
+            // Add animation style dynamically
+            const style = document.createElement('style');
+            style.innerHTML = `@keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }`;
+            document.head.appendChild(style);
         }
     </script>
 </body>
